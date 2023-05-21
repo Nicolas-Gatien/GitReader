@@ -1,6 +1,6 @@
 import openai
 
-def generate_gpt_response(prompt, model="gpt-4", temperature=0):
+def generate_gpt_response(prompt, model="gpt-3.5-turbo", temperature=0):
     response = openai.ChatCompletion.create(
         model=model,
         messages=[
@@ -11,7 +11,7 @@ def generate_gpt_response(prompt, model="gpt-4", temperature=0):
     )
     return response.choices[0].message['content']
 
-def generate_gpt_response_with_context(prompt, context, model="gpt-4", temperature=1):
+def generate_gpt_response_with_context(prompt, context, model="gpt-3.5-turbo", temperature=1):
     context.append({
         "role": "user",
         "content": prompt

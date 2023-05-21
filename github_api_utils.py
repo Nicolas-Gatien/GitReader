@@ -55,7 +55,7 @@ def fetch_github_repo_contents(api_url):
 
 
 def write_repo_directory_to_file(api_url, contents_data):
-    with open('directory.txt', 'w') as directory_file:
+    with open('generated/directory.txt', 'w') as directory_file:
         write_directory_contents_to_file(api_url, contents_data, '', directory_file)
 
 def write_directory_contents_to_file(api_url, contents, path, directory_file):

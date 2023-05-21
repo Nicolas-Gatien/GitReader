@@ -31,7 +31,6 @@ def fabricate_file_selection_prompt(description, user_question, exclude_files):
 
     You must only answer with the path to the file, do not give an explanation, or else you will be shut down.
     Answer only with the path to the file.
-    Make sure the file is real.
 
     (path)
     """
