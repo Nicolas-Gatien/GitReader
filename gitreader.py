@@ -118,7 +118,7 @@ def main():
     except Exception as e:
         exc_info = sys.exc_info()
         lines = traceback.format_exception(*exc_info)
-        with open('error_log.txt', 'w') as file:
+        with open('generated/error_log.txt', 'w') as file:
             for line in lines:
                 file.write(line)
 

@@ -4,7 +4,7 @@ def fetch_key(program):
 
 def fetch_directory_contents_from_file():
     try:
-        with open('directory.txt', 'r') as directory_file:
+        with open('generated/directory.txt', 'r') as directory_file:
             return directory_file.read()
     except FileNotFoundError:
         return "Directory.txt not found."

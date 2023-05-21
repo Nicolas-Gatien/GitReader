@@ -1,6 +1,6 @@
 import openai
 
-def generate_gpt_response(prompt, model="gpt-3.5-turbo", temperature=0):
+def generate_gpt_response(prompt, model="gpt-4", temperature=0):
     response = openai.ChatCompletion.create(
         model=model,
         messages=[
@@ -11,7 +11,7 @@ def generate_gpt_response(prompt, model="gpt-3.5-turbo", temperature=0):
     )
     return response.choices[0].message['content']
 
-def generate_gpt_response_with_context(prompt, context, model="gpt-3.5-turbo", temperature=1):
+def generate_gpt_response_with_context(prompt, context, model="gpt-4", temperature=1):
     context.append({
         "role": "user",
         "content": prompt
@@ -37,7 +37,7 @@ def reset_context_if_needed(context, prompt):
     if (calculate_context_characters(context) + len(prompt) > 15000):
         formatted_context = generate_formatted_context(context)
         context_prompt = f"Summarize everything you know about the repository based on this conversation in 3 paragraphs: {formatted_context}"
-        response = generate_gpt_response(context_prompt)                
+        response = generate_gpt_response_with_context(context_prompt)                
         print("\033[36m\nReset memory: " + response + "\033[0m" + "\n")
 
         # Reset context with the response
