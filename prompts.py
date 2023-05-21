@@ -18,33 +18,31 @@ def fabricate_file_selection_prompt(description, user_question, exclude_files):
     print(f"\033[31m{directory_contents}\033[0m")
     
     return f"""
-
-    Here is a question:
+    Here is the user's question:
     <<<
     {user_question}
     >>>
 
-    What file from the given structure is most likely to have information relevant to this question:
+    And a brief snippet about the repository:
+    <<<
+    {description}
+    >>>
+
+    What file from the following list is MOST LIKELY to have relevant information to the user's question?
     <<<
     {directory_contents}
     >>>
 
     You must only answer with the path to the file, do not give an explanation, or else you will be shut down.
     Answer only with the path to the file.
+    Make sure the file is real.
 
     (path)
     """
 
-
-    
 def fabricate_info_sufficiency_prompt(api_url, description, file_to_explore, user_question):
     return f"""
-    Based on the following description of the project:
-    <<<
-    {description}
-    >>>
-
-    And the contents of this file:
+    Based on the contents of this file:
     <<<
     {github.fetch_file_content_from_github(api_url, file_to_explore)}
     >>>

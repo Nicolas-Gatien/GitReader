@@ -18,7 +18,6 @@ headers = {'Authorization': f'token {token}'}
 def fetch_file_content_from_github(api_url, path, retry=False):
     path = path.lstrip("/\\") if path else path
     file_url = f'{api_url}/contents/{path}'
-    print(file_url)
     response = requests.get(file_url, headers=headers)
     file_data = response.json()
     if response.status_code != 200:
