@@ -29,16 +29,18 @@ def fabricate_info_sufficiency_prompt(api_url, description, file_to_explore, use
     <<<
     {description}
     >>>
+
     And the contents of this file:
     <<<
     {github.fetch_file_content_from_github(api_url, file_to_explore)}
     >>>
+
     Do you have the necessary information to answer this question?
     <<<
     {user_question}
     >>>
 
-    If you do, answer with "Yes"
+    Answer with only 1 word: "Yes" or "No"
     (answer)
     """
     
