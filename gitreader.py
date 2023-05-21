@@ -41,7 +41,7 @@ def main():
         except FileNotFoundError:
             print(Fore.RED + "Could not find README.md")
             print(Fore.GREEN + "README.md not found, looking for next best file")
-            prompt = prompts.fabricate_file_selection_prompt(" ", "What file most likely has code describing what this repository is about?")
+            prompt = prompts.fabricate_file_selection_prompt(" ", "What file most likely has code describing what this repository is about?", [])
             file_to_explore = ai.generate_gpt_response(prompt)
 
             print("\033[90m\n I would like to explore: " + file_to_explore + "\033[0m" + "\n")
@@ -73,12 +73,18 @@ def main():
         description = ai.generate_gpt_response_with_context(prompt, context)
         print(description + "\n")
 
+        exclude_files = []
+        ask_question = True
+
         while True:
             # Ask the user for a question
-            user_question = input("\033[34mWhat is your question: ")
+            if ask_question:
+                user_question = input("\033[34mWhat is your question: ")
+            else:
+                ask_question = True
 
             # Question 1
-            prompt = prompts.fabricate_file_selection_prompt(description, user_question)
+            prompt = prompts.fabricate_file_selection_prompt(description, user_question, exclude_files)
             file_to_explore = ai.generate_gpt_response(prompt)
 
             print("\033[90m\n I would like to explore: " + file_to_explore + "\033[0m" + "\n")
@@ -103,6 +109,11 @@ def main():
                 prompt = prompts.fabricate_answer_prompt(api_url, user_question, file_to_explore)
                 response = ai.generate_gpt_response_with_context(prompt, context)
                 print(response + "\n")
+            else:
+                exclude_files.append(file_to_explore)
+                ask_question = False
+
+
     
     except Exception as e:
         exc_info = sys.exc_info()

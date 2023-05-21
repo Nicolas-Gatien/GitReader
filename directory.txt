@@ -4,6 +4,8 @@
 /__pycache__/github_api_utils.cpython-38.pyc
 /__pycache__/openai_utils.cpython-38.pyc
 /__pycache__/prompts.cpython-38.pyc
+/directory.txt
+/error_log.txt
 /file_utils.py
 /github_api_utils.py
 /gitreader.py

@@ -1,10 +1,6 @@
 Traceback (most recent call last):
-  File "C:\Users\polar\Desktop\GitReader\Git\gitreader.py", line 95, in main
-    prompt = prompts.fabricate_info_sufficiency_prompt(api_url, description, file_to_explore, user_question)
-  File "C:\Users\polar\Desktop\GitReader\Git\prompts.py", line 34, in fabricate_info_sufficiency_prompt
-    {github.fetch_file_content_from_github(api_url, file_to_explore)}
-  File "C:\Users\polar\Desktop\GitReader\Git\github_api_utils.py", line 45, in fetch_file_content_from_github
-    return fetch_file_content_from_github(api_url, new_path, retry=True)
-  File "C:\Users\polar\Desktop\GitReader\Git\github_api_utils.py", line 48, in fetch_file_content_from_github
-    raise FileNotFoundError('File not found')
-FileNotFoundError: File not found
+  File "C:\Users\polar\Desktop\GitReader\Git\gitreader.py", line 87, in main
+    prompt = prompts.fabricate_file_selection_prompt(description, user_question, exclude_files)
+  File "C:\Users\polar\Desktop\GitReader\Git\prompts.py", line 11, in fabricate_file_selection_prompt
+    directory_contents.remove(file)
+AttributeError: 'str' object has no attribute 'remove'

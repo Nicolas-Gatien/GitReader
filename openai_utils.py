@@ -34,7 +34,7 @@ def calculate_context_characters(context):
     return total_chars
 
 def reset_context_if_needed(context, prompt):
-    if (calculate_context_characters(context) + len(prompt) > 13000):
+    if (calculate_context_characters(context) + len(prompt) > 15000):
         formatted_context = generate_formatted_context(context)
         context_prompt = f"Summarize everything you know about the repository based on this conversation in 3 paragraphs: {formatted_context}"
         response = generate_gpt_response(context_prompt)                
